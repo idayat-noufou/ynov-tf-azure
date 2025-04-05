@@ -35,5 +35,5 @@ resource "azurerm_linux_virtual_machine" "${var.prefix}-vm" {
 }
 
 output "vm_name" {
-  value = azurerm_linux_virtual_machine.ci-cd-vm.name
+  value = azurerm_linux_virtual_machine.${var.prefix}-vm.name
 }
