@@ -1,12 +1,12 @@
 # Virtual Machine
-resource "azurerm_linux_virtual_machine" "ci-cd-vm" {
+resource "azurerm_linux_virtual_machine" "${var.prefix}-vm" {
   name                  = "${var.prefix}-vm"
-  location              = azurerm_resource_group.ci-cd-rg.location
-  resource_group_name   = azurerm_resource_group.ci-cd-rg.name
+  location              = azurerm_resource_group.${var.prefix}-rg.location
+  resource_group_name   = azurerm_resource_group.${var.prefix}-rg.name
   network_interface_ids = [
-    azurerm_network_interface.ci-cd-nic.id
+    azurerm_network_interface.${var.prefix}-nic.id
   ]
-  size                  = "Standard_D2s_v3"
+  size                  = "Standard_B1ms"
   admin_username        = "adminuser"
 
   admin_ssh_key {
