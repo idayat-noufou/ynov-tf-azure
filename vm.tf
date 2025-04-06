@@ -1,16 +1,16 @@
 # Virtual Machine
 resource "azurerm_linux_virtual_machine" "ynov1-vm" {
-  name                  = "${var.prefix}-vm"
-  location              = azurerm_resource_group.ynov1-rg.location
-  resource_group_name   = azurerm_resource_group.ynov1-rg.name
+  name                = "${var.prefix}-vm"
+  location            = azurerm_resource_group.ynov1-rg.location
+  resource_group_name = azurerm_resource_group.ynov1-rg.name
   network_interface_ids = [
     azurerm_network_interface.ynov1-nic.id
   ]
-  size                  = "Standard_B1ms"
-  admin_username        = "adminuser"
+  size           = "Standard_B1ms"
+  admin_username = "adminuser"
 
   admin_ssh_key {
-    username = "adminuser"
+    username   = "adminuser"
     public_key = file("~/.ssh/id_rsa.pub")
   }
 
@@ -22,8 +22,8 @@ resource "azurerm_linux_virtual_machine" "ynov1-vm" {
   }
 
   os_disk {
-    caching               = "ReadWrite"
-    storage_account_type  = "Standard_LRS"
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
   }
 
   tags = {
