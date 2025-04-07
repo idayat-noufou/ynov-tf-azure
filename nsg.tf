@@ -1,8 +1,8 @@
 # Network Security Group and rule
-resource "azurerm_network_security_group" "ci-cd-nsg" {
+resource "azurerm_network_security_group" "ynov1-nsg" {
   name                = "${var.prefix}-nsg"
-  location            = azurerm_resource_group.ci-cd-rg.location
-  resource_group_name = azurerm_resource_group.ci-cd-rg.name
+  location            = azurerm_resource_group.ynov1-rg.location
+  resource_group_name = azurerm_resource_group.ynov1-rg.name
 
   # Allow incoming connection on port 22 for SSH
   security_rule {
@@ -25,16 +25,16 @@ resource "azurerm_network_security_group" "ci-cd-nsg" {
 }
 
 # Network Interface
-resource "azurerm_network_interface" "ci-cd-nic" {
+resource "azurerm_network_interface" "ynov1-nic" {
   name                = "${var.prefix}-nic"
-  location            = azurerm_resource_group.ci-cd-rg.location
-  resource_group_name = azurerm_resource_group.ci-cd-rg.name
+  location            = azurerm_resource_group.ynov1-rg.location
+  resource_group_name = azurerm_resource_group.ynov1-rg.name
 
   ip_configuration {
     name                          = "testconfiguration1"
-    subnet_id                     = azurerm_subnet.ci-cd-subnet.id
+    subnet_id                     = azurerm_subnet.ynov1-subnet.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.ci-cd-ip.id
+    public_ip_address_id          = azurerm_public_ip.ynov1-ip.id
   }
 
   tags = {
@@ -47,6 +47,6 @@ resource "azurerm_network_interface" "ci-cd-nic" {
 
 # Associate Network Security group with Subnet
 resource "azurerm_subnet_network_security_group_association" "nsg-subnet" {
-  subnet_id                 = azurerm_subnet.ci-cd-subnet.id
-  network_security_group_id = azurerm_network_security_group.ci-cd-nsg.id
+  subnet_id                 = azurerm_subnet.ynov1-subnet.id
+  network_security_group_id = azurerm_network_security_group.ynov1-nsg.id
 }

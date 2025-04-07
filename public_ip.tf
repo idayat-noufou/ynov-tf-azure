@@ -1,8 +1,8 @@
 # Public IPs
-resource "azurerm_public_ip" "ci-cd-ip" {
+resource "azurerm_public_ip" "ynov1-ip" {
   name                = "${var.prefix}-ip"
-  location            = azurerm_resource_group.ci-cd-rg.location
-  resource_group_name = azurerm_resource_group.ci-cd-rg.name
+  location            = azurerm_resource_group.ynov1-rg.location
+  resource_group_name = azurerm_resource_group.ynov1-rg.name
   allocation_method   = "Dynamic"
 
   tags = {
@@ -14,5 +14,5 @@ resource "azurerm_public_ip" "ci-cd-ip" {
 }
 
 output "public_ip" {
-  value = azurerm_public_ip.ci-cd-ip.ip_address
+  value = azurerm_public_ip.ynov1-ip.ip_address
 }
