@@ -1,5 +1,5 @@
 variable "prefix" {
-  default = "smontri" # A personnaliser avec votre nom
+  default = "ci-cd-idayat" # A personnaliser avec votre nom
 }
 
 variable "environment" {
@@ -7,7 +7,7 @@ variable "environment" {
 }
 
 variable "project" {
-  default = "ynov1"
+  default = "ci-cd"
 }
 
 variable "ssh_key" {
